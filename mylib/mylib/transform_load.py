@@ -14,12 +14,20 @@ def create_spark(app_name):
 def load(dataset="data/transfer.csv"):
     print(os.getcwd())
     spark = create_spark("transfer")
+
     # Load data using PySpark
     payload = spark.read.csv(dataset, header=True, inferSchema=True)
 
-    # Transform the data if necessary (add any specific transformations here)
-    # For example, renaming columns to match SQLite table format
-    payload = payload.withColumnRenamed("id", "player_id")
+    # Rename columns to match your SQLite table schema
+    payload = (
+        payload.withColumnRenamed("ID", "player_id")
+        .withColumnRenamed("Federation", "federation")
+        .withColumnRenamed("Form.Fed", "former_fed")
+        .withColumnRenamed("Transfer Date", "transfer_date")
+    )
+
+    # Handle missing values in former_fed column
+    payload = payload.fillna({"former_fed": "UNKNOWN"})  # Replace NULL with "UNKNOWN"
 
     # Convert Spark DataFrame to a list of tuples for SQLite
     data_tuples = [tuple(row) for row in payload.collect()]

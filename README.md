@@ -1,24 +1,100 @@
 [![CI](https://github.com/nogibjj/skye-assignment-10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/skye-assignment-10/actions/workflows/cicd.yml)
-# Skye Assignment 10
-This repository contains a Python script that connects to a SQL database, performs CRUD (Create, Read, Update, Delete) operations, and executes two different SQL queries. Additionally, the project includes a CI/CD pipeline that tests each operation, verifying the correct execution of database operations.
 
+# Skye Assignment 10: Chess Player Transfers with PySpark
 
+This project processes chess player transfer data using PySpark. It integrates an ETL pipeline to clean, transform, and query the data efficiently. A CI/CD pipeline is also configured using GitHub Actions to validate the code and ensure all workflows are tested.
 
-## Logging Details [link](https://github.com/nogibjj/skye-assignment-5/blob/main/log/database_log.log).
-- **Log Location**: All logs are saved in the `log` folder. 
-- **Log Level**: Database operations are logged at the _debug level_ for detailed traceability.
-- **Log Format**: Includes timestamps, log levels, and messages.
+## Features
+
+1. **ETL Pipeline with PySpark**:
+   - **Extract**: Reads raw data from a CSV file.
+   - **Transform**: Renames columns, handles missing data, and prepares the dataset for querying.
+   - **Load**: Saves the transformed data to a CSV file for further analysis.
+
+2. **SQL Queries Using PySpark**:
+   - Performs queries directly on the PySpark DataFrame using Spark SQL.
+   - Example queries include transfer counts by federation and listing all transfers with specific conditions.
+
+3. **CI/CD Pipeline**:
+   - Automated with GitHub Actions.
+   - Ensures code formatting, linting, and testing of the ETL and query workflows.
+
+## Workflow
+
+1. **Data Processing with PySpark**:
+   - Reads the raw dataset from [FiveThirtyEight's dataset](https://github.com/fivethirtyeight/data/blob/master/chess-transfers/transfers.csv).
+   - Applies transformations to rename columns and handle missing data.
+   - Saves the cleaned data to a CSV file (`data/transformed_transfer.csv`).
+
+2. **SQL Queries**:
+   - Registers the DataFrame as a SQL temporary view.
+   - Runs Spark SQL queries to analyze the data, such as:
+     - Counting transfers by federation.
+     - Filtering and retrieving specific records.
+
+3. **CI/CD Pipeline**:
+   - Validates the codebase using `ruff` for linting and `black` for formatting.
+   - Tests the ETL pipeline and query workflows for correctness.
+
+## Setup Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/nogibjj/skye-assignment-10.git
+   cd skye-assignment-10
+   ```
+
+2. Install Dependencies:
+   ```bash
+   make install
+   ```
+
+3. Run the Project:
+    ```bash
+    make run
+    ```
+
+4. Format and Lint the Code:
+    ```bash
+    make format
+    make lint
+    ```
+
+5. Run the CI/CD Pipeline Locally:
+    ```bash
+    make all
+    ```
 
 ## CI/CD Pipeline
 
-A CI/CD pipeline is configured using GitHub Actions to automatically test each database operation. The pipeline loads the `.db` file and runs the operations to ensure they work as expected.
+The CI/CD pipeline is configured using GitHub Actions. It includes the following stages:
 
-## SQL Queries Used
+1. **Code Formatting**:
+   
+   Enforced with `black` for clean and consistent code formatting.
 
-The following SQL queries are used within the script:
+2. **Linting**:
+   
+   Checked using `ruff` to ensure compliance with Python best practices.
 
-- **Select Query with Condition**: Retrieves a specific record based on `id`.
-- **Select All Query**: Retrieves all records from the `transfer` table.
-- **Insert Query**: Adds a new record to the `transfer` table.
-- **Update Query**: Updates an existing record in the `transfer` table.
-- **Delete Query**: Removes a record from the `transfer` table.
+3. **Testing**:
+   
+   Runs the ETL workflow and SQL queries on the PySpark DataFrame to verify correctness.
+
+## Deliverables
+
+1. **PySpark Script**:
+   
+   Processes the raw dataset using PySpark and saves the results as CSV files.
+
+2. **Transformed Dataset**:
+   
+   Output data saved to `data/transformed_transfer.csv`.
+
+3. **Query Results**:
+   
+   Query results saved to `data/transfer_summary.csv`.
+
+4. **CI/CD Pipeline**:
+   
+   Automated testing, formatting, and linting.

@@ -1,41 +1,34 @@
 """
-ETL-Query script
+Main ETL-Query Script Using PySpark
 """
-import logging
 from mylib.log import init_log
-from mylib.extract import extract
-from mylib.transform_load import load
-from mylib.query import get, get_all, create, update, delete
+from mylib.etl import create_spark, load_data, transform_data, save_data, query_data
 
+if __name__ == "__main__":
+    # Initialize logging
+    logger = init_log()
+    logger.info("Starting ETL-Query Process...")
 
-init_log()
-logger = logging.getLogger('urbanGUI')
+    # Create Spark session
+    logger.info("Initializing Spark session...")
+    spark = create_spark("TransferETL")
 
-# Extract
-logging.debug("Extracting data...")
-logging.info(extract())
+    # Load data
+    logger.info("Loading data...")
+    data = load_data(spark)
 
-# Transform and load
-logging.debug("Transforming data...")
-logging.info(load())
+    # Transform data
+    logger.info("Transforming data...")
+    transformed_data = transform_data(data)
 
-# Get All
-logging.info("Getting all data...")
-get_all()
+    # Save transformed data
+    logger.info("Saving transformed data...")
+    save_data(transformed_data)
 
-logging.info("Creating a new entry with value google.com, 12345, usa, can, 06/12/2020")
-id = create("google.com", 12345, "usa", "can", "06/12/2020")
+    # Query data
+    logger.info("Querying data...")
+    query_results = query_data(transformed_data, spark)
 
-logging.info("Get last entry")
-get(id)
-
-logging.info("Updating entry")
-update(id, "facebook.com", 12345, "usa", "can", "06/12/2020")
-get(id)
-
-logging.info("Deleting entry")
-delete(id)
-
-logging.info("Getting all data...")
-get_all()
-logging.info(f"done - notice that id {id} is no longer in the database")
+    # Stop Spark session
+    spark.stop()
+    logger.info("ETL-Query process completed.")
