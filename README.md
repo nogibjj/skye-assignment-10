@@ -1,6 +1,8 @@
-[![CI](https://github.com/nogibjj/skye-assignment-5/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/skye-assignment-5/actions/workflows/cicd.yml)
-# Skye Assignment 5 - SQL Database Operations
+[![CI](https://github.com/nogibjj/skye-assignment-10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/skye-assignment-10/actions/workflows/cicd.yml)
+# Skye Assignment 10
 This repository contains a Python script that connects to a SQL database, performs CRUD (Create, Read, Update, Delete) operations, and executes two different SQL queries. Additionally, the project includes a CI/CD pipeline that tests each operation, verifying the correct execution of database operations.
+
+
 
 ## Logging Details [link](https://github.com/nogibjj/skye-assignment-5/blob/main/log/database_log.log).
 - **Log Location**: All logs are saved in the `log` folder. 

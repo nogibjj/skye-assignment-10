@@ -51,9 +51,7 @@
 				"ms-toolsai.jupyter-renderers",
 				"ms-python.vscode-pylance",
 				"ms-python.python",
-				"ms-vscode.makefile-tools",
-				"github.vscode-github-actions",
-				"GitHub.copilot-chat"
+				"ms-vscode.makefile-tools"
 			]
 		}
 	},
@@ -71,7 +69,7 @@
 		"--privileged",
 		"--init"
 	],
-	
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 

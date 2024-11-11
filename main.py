@@ -38,4 +38,4 @@ delete(id)
 
 logging.info("Getting all data...")
 get_all()
-logging.info(f"notice that id {id} is no longer in the database")
+logging.info(f"done - notice that id {id} is no longer in the database")

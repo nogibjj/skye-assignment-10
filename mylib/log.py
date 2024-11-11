@@ -1,7 +1,7 @@
 import logging
 import os
 
-file_path = "log/database_log.log"
+file_path = "log/database.log"
 
 
 def init_log(file_name=file_path, level=logging.NOTSET):
