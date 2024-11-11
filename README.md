@@ -4,6 +4,12 @@
 
 This project processes chess player transfer data using PySpark. It integrates an ETL pipeline to clean, transform, and query the data efficiently. A CI/CD pipeline is also configured using GitHub Actions to validate the code and ensure all workflows are tested.
 
+## Pyspark script
+The pyspark script can be found [here](https://github.com/nogibjj/skye-assignment-10/blob/main/mylib/etl.py)
+
+## Output
+The output can be found in [log](https://github.com/nogibjj/skye-assignment-10/blob/main/log/database.log) and [data](https://github.com/nogibjj/skye-assignment-10/tree/main/data)
+
 ## Features
 
 1. **ETL Pipeline with PySpark**:
